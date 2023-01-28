@@ -1,34 +1,26 @@
 import { babel } from '@rollup/plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+
 
 const common_plugins = [
+  commonjs(),
+  resolve(),
   babel({
-    babelHelpers: 'bundled',
+    // babelHelpers: 'bundled',
+    babelHelpers: 'runtime',
     exclude: 'node_modules/**',
-    presets: [
-      [
-        "@babel/preset-env",
-        {
-          "modules": false,
-          "useBuiltIns": "usage",
-          "corejs": 3
-          // "targets": {
-            // "ie": 10
-            // "browsers": ["> 1%", "last 2 versions", "not dead", "not ie 11"]
-            // "browsers": ["Chrome >= 50"]
-          // }
-        }
-      ]
-    ]
   }),
 ]
 
+// const input = ['index.js', 'other.js']
+const input = ['index.js']
+
 export default [
   {
-    input: 'index.js',
+    input,
     output: {
-      // dir: 'dist/es',
-      file: 'index.js',
-      entryFileNames: '[name]-[hash].js',
+      dir: 'dist/es',
       format: 'es'
     },
     plugins: [
@@ -36,7 +28,7 @@ export default [
     ]
   },
   {
-    input: 'index.js',
+    input,
     output: {
       dir: 'dist/cjs',
       format: 'cjs'
@@ -46,7 +38,7 @@ export default [
     ]
   },
   {
-    input: 'index.js',
+    input,
     output: {
       dir: 'dist/iife',
       format: 'iife',
@@ -57,7 +49,7 @@ export default [
     ]
   },
   {
-    input: 'index.js',
+    input,
     output: {
       dir: 'dist/umd',
       format: 'umd',

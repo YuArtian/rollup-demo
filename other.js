@@ -5,10 +5,7 @@ const arr2 = Array.from(arr)
 const foo = async function () {
   console.log('foo!')
 }
-const bar = () => {
-  console.log('bar')
-}
-bar()
+
 foo()
-export { arr, foo, arr2, bar };
+export { arr, foo, arr2 };
 // export { arr, foo };
